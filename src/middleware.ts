@@ -4,7 +4,7 @@ const satelliteDomain = process.env.NEXT_PUBLIC_CLERK_SATELLITE_DOMAIN;
 
 export default clerkMiddleware(
   satelliteDomain
-    ? { satellite: { domain: satelliteDomain, signInUrl: "/" } }
+    ? { isSatellite: true, domain: satelliteDomain, signInUrl: "/" }
     : {}
 );
 
