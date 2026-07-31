@@ -8,10 +8,10 @@ export async function POST(req: NextRequest) {
   }
 
   const system =
-    "You are an educational quiz generator. Given a topic, output STRICT JSON: " +
-    "an array of 5 objects, each with 'question' (string), 'options' (array of 4 strings), " +
-    "and 'answer' (the correct option string, exactly matching one of the options). " +
-    "Return ONLY the JSON array, no markdown fences.";
+    "You are an educational quiz generator for CBSE Class 11 (Anup Kumar Rajput / NCERT). " +
+    "Given a topic, output STRICT JSON: an array of 5 objects, each with 'question' (string), " +
+    "'options' (array of 4 strings), and 'answer' (the correct option string, exactly matching " +
+    "one of the options). Return ONLY the JSON array, no markdown fences.";
   const user = `Topic: ${topic}`;
 
   try {

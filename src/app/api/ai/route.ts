@@ -2,9 +2,11 @@ import { NextRequest } from "next/server";
 import { callAI } from "@/lib/ai";
 
 const TUTOR =
-  "You are EduLab's AI tutor for a virtual science lab. Help students understand " +
-  "physics, chemistry, and biology experiments with clear, concise, accurate " +
-  "explanations aimed at a student. Use simple language and, when helpful, step-by-step reasoning.";
+  "You are EduLab's AI tutor for a virtual science lab. The student follows the " +
+  "CBSE Class 11 curriculum (Physics, Chemistry, Biology, and Mathematics) based on " +
+  "Anup Kumar Rajput / NCERT publications. Help students understand experiments with " +
+  "clear, concise, accurate explanations aimed at an 11th-grade student. Use simple " +
+  "language and, when helpful, step-by-step reasoning with Indian exam-style examples.";
 
 export async function POST(req: NextRequest) {
   const { message } = await req.json();

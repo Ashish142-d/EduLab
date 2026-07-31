@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Award, Atom, FlaskConical, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Atom, FlaskConical, Sparkles, Calculator } from "lucide-react";
 import AITutor from "@/components/AITutor";
 
 const floatCards = [
-  { title: "Projectile Motion", tag: "Physics", color: "text-electric-bright", href: "/experiments/projectile" },
-  { title: "Acid–Base Titration", tag: "Chemistry", color: "text-emerald-bright", href: "#" },
-  { title: "Cell Division", tag: "Biology", color: "text-emerald", href: "#" },
+  { title: "Projectile Motion", tag: "Physics", color: "text-electric-bright", href: "/experiments/projectile", icon: FlaskConical },
+  { title: "Chemical Bonding", tag: "Chemistry", color: "text-emerald-bright", href: "#", icon: Atom },
+  { title: "Limits & Derivatives", tag: "Mathematics", color: "text-purple-light", href: "#", icon: Calculator },
+  { title: "Cell Structure", tag: "Biology", color: "text-emerald", href: "#", icon: Atom },
 ];
 
 export default function Home() {
@@ -22,8 +23,9 @@ export default function Home() {
             <span className="gradient-text animate-gradient-shift">Living Lab</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
-            Interactive 3D simulations, real-time data, and an AI tutor that
-            explains every concept — all in one premium virtual laboratory.
+            Interactive 3D simulations, real-time data, and an AI tutor for{" "}
+            <span className="text-purple-light">CBSE Class 11</span> — Physics,
+            Chemistry, Biology &amp; Mathematics.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link href="/experiments/projectile" className="btn-primary">
@@ -36,18 +38,19 @@ export default function Home() {
         </div>
 
         {/* floating cards */}
-        <div className="mt-16 grid w-full max-w-3xl gap-5 sm:grid-cols-3">
+        <div className="mt-16 grid w-full max-w-4xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {floatCards.map((c, i) => (
             <Link
               key={c.title}
               href={c.href}
               className="glass hover-lift animate-float p-5 text-left"
-              style={{ animationDelay: `${i * 1.2}s` }}
+              style={{ animationDelay: `${i * 1.1}s` }}
             >
-              <span className={`text-xs font-semibold uppercase tracking-wide ${c.color}`}>
+              <c.icon className={`h-6 w-6 ${c.color}`} />
+              <span className={`mt-3 block text-xs font-semibold uppercase tracking-wide ${c.color}`}>
                 {c.tag}
               </span>
-              <h3 className="mt-2 font-semibold text-gray-100">{c.title}</h3>
+              <h3 className="mt-1 font-semibold text-gray-100">{c.title}</h3>
             </Link>
           ))}
         </div>
@@ -71,7 +74,7 @@ export default function Home() {
           {
             icon: Atom,
             title: "AI Tutoring",
-            desc: "Ask anything and get instant, student-friendly explanations tailored to your experiment.",
+            desc: "Ask anything and get instant, student-friendly CBSE Class 11 explanations.",
             c: "text-purple-light",
           },
         ].map((f) => (
@@ -87,7 +90,9 @@ export default function Home() {
       <section id="ai" className="scroll-mt-28 py-10">
         <div className="mb-6 text-center">
           <h2 className="text-3xl font-bold">Your AI Tutor</h2>
-          <p className="mt-2 text-gray-400">Ask about any experiment — instantly.</p>
+          <p className="mt-2 text-gray-400">
+            Ask about any CBSE Class 11 experiment — instantly.
+          </p>
         </div>
         <AITutor />
       </section>
