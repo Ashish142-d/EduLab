@@ -1,0 +1,97 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum ExperimentStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id        String    @id
+  email     String    @unique
+  name      String?
+  role      Role      @default(STUDENT)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  progress     Progress[]
+  quizAttempts QuizAttempt[]
+  experiments  Experiment[]  @relation("CreatedExperiments")
+}
+
+model Subject {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  description String?
+  experiments Experiment[]
+}
+
+model Experiment {
+  id          String   @id @default(uuid())
+  title       String
+  description String   @db.Text
+  procedure   String?  @db.Text
+  modelPath   String?
+  subjectId   String
+  subject     Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  createdById String
+  createdBy   User     @relation("CreatedExperiments", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+
+  questions Question[]
+  progress  Progress[]
+  attempts  QuizAttempt[]
+}
+
+model Question {
+  id           String     @id @default(uuid())
+  experimentId String
+  experiment   Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  text         String     @db.Text
+  points       Int        @default(10)
+  answers      Answer[]
+}
+
+model Answer {
+  id         String   @id @default(uuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  text       String
+  isCorrect  Boolean  @default(false)
+}
+
+model Progress {
+  id           String           @id @default(uuid())
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  experimentId String
+  experiment   Experiment       @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  status       ExperimentStatus @default(NOT_STARTED)
+  lastAccessed DateTime         @updatedAt
+
+  @@unique([userId, experimentId])
+}
+
+model QuizAttempt {
+  id           String     @id @default(uuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  experimentId String
+  experiment   Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  score        Float
+  maxScore     Float
+  completedAt  DateTime   @default(now())
+}
