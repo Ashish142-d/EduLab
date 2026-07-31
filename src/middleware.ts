@@ -1,6 +1,12 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+const satelliteDomain = process.env.NEXT_PUBLIC_CLERK_SATELLITE_DOMAIN;
+
+export default clerkMiddleware(
+  satelliteDomain
+    ? { satellite: { domain: satelliteDomain, signInUrl: "/" } }
+    : {}
+);
 
 export const config = {
   matcher: [

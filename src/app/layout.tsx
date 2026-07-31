@@ -18,8 +18,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const satelliteDomain = process.env.NEXT_PUBLIC_CLERK_SATELLITE_DOMAIN;
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      {...(satelliteDomain
+        ? { satellite: true, domain: satelliteDomain, signInUrl: "/" }
+        : {})}
+    >
       <html lang="en" className="dark">
         <body className={`${inter.variable} bg-space font-sans text-gray-200 antialiased`}>
           <Background />
