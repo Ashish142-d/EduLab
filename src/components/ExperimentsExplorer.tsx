@@ -38,7 +38,7 @@ export default function ExperimentsExplorer({ items }: { items: ExpItem[] }) {
           filtered.map((e) => (
             <Link
               key={e.id}
-              href="/experiments/projectile"
+              href={e.id === "phy-projectile" ? "/experiments/projectile" : `/experiments/${e.id}`}
               className={`glass hover-lift block p-6 ${e.cls}`}
             >
               <span className={`text-xs font-semibold uppercase tracking-wide ${e.cls.split(" ")[0]}`}>

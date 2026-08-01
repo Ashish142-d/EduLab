@@ -4,9 +4,9 @@ import AITutor from "@/components/AITutor";
 
 const floatCards = [
   { title: "Projectile Motion", tag: "Physics", color: "text-electric-bright", href: "/experiments/projectile", icon: FlaskConical },
-  { title: "Chemical Bonding", tag: "Chemistry", color: "text-emerald-bright", href: "#", icon: Atom },
-  { title: "Limits & Derivatives", tag: "Mathematics", color: "text-purple-light", href: "#", icon: Calculator },
-  { title: "Cell Structure", tag: "Biology", color: "text-emerald", href: "#", icon: Atom },
+  { title: "Chemical Bonding", tag: "Chemistry", color: "text-emerald-bright", href: "/experiments/chem-bonding", icon: Atom },
+  { title: "Limits & Derivatives", tag: "Mathematics", color: "text-purple-light", href: "/experiments/math-derivatives", icon: Calculator },
+  { title: "Cell Structure", tag: "Biology", color: "text-emerald", href: "/experiments/bio-cell", icon: Atom },
 ];
 
 export default function Home() {
