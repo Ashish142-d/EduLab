@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { FlaskConical } from "lucide-react";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
@@ -43,14 +42,6 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <SignedOut>
-            <SignInButton mode="modal">
-              <button className="btn-primary px-4 py-2 text-sm">Sign in</button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
         </div>
       </nav>
     </header>

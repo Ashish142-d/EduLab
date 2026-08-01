@@ -1,7 +1,6 @@
 import ProjectileExperiment from "@/components/ProjectileExperiment";
 import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function ProjectilePage() {
   return (
@@ -41,21 +40,7 @@ export default function ProjectilePage() {
 
         {/* CENTER — 3D simulation */}
         <div className="glass overflow-hidden p-2">
-          <SignedIn>
-            <ProjectileExperiment />
-          </SignedIn>
-          <SignedOut>
-            <div className="grid h-[420px] place-items-center p-8 text-center">
-              <div>
-                <p className="text-gray-300">
-                  Sign in to launch the interactive 3D simulation.
-                </p>
-                <SignInButton mode="modal">
-                  <button className="btn-primary mt-4 px-4 py-2 text-sm">Sign in</button>
-                </SignInButton>
-              </div>
-            </div>
-          </SignedOut>
+          <ProjectileExperiment />
         </div>
 
         {/* RIGHT — Live values + formula */}
